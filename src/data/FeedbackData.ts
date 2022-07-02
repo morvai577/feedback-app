@@ -1,5 +1,5 @@
 export type FeedbackDataType = {
-  id: number;
+  id?: number;
   rating: number;
   text: string;
 };
