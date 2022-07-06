@@ -9,6 +9,7 @@ import { FeedbackForm } from "@/components/FeedbackForm/FeedbackForm";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AboutPage } from "@/pages/About/AboutPage";
 import { AboutIconLink } from "@/components/AboutIconLink/AboutIconLink";
+import { FeedbackProvider } from "@/context/FeedbackContext";
 
 export default function App() {
   const [feedback, setFeedback] =
@@ -26,27 +27,29 @@ export default function App() {
   };
 
   return (
-    <BrowserRouter>
-      <Header text="Hello World" />
-      <div className="container">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <FeedbackForm handleAdd={addFeedback} />
-                <FeedbackStats feedback={feedback} />
-                <FeedbackList
-                  feedback={feedback}
-                  handleDelete={deleteFeedback}
-                />
-              </>
-            }
-          ></Route>
-          <Route path="/about" element={<AboutPage />} />
-        </Routes>
-      </div>
-      <AboutIconLink />
-    </BrowserRouter>
+    <FeedbackProvider>
+      <BrowserRouter>
+        <Header text="Hello World" />
+        <div className="container">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <FeedbackForm handleAdd={addFeedback} />
+                  <FeedbackStats feedback={feedback} />
+                  <FeedbackList
+                    feedback={feedback}
+                    handleDelete={deleteFeedback}
+                  />
+                </>
+              }
+            ></Route>
+            <Route path="/about" element={<AboutPage />} />
+          </Routes>
+        </div>
+        <AboutIconLink />
+      </BrowserRouter>
+    </FeedbackProvider>
   );
 }
