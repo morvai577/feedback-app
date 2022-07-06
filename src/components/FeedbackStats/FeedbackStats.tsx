@@ -1,12 +1,11 @@
 // @flow
 import * as React from "react";
-import { FeedbackDataType } from "@/data/FeedbackData";
+import { useContext } from "react";
+import FeedbackContext from "@/context/FeedbackContext";
 
-type FeedbackStatsProps = {
-  feedback: Array<FeedbackDataType>;
-};
+export const FeedbackStats = () => {
+  const { feedback } = useContext(FeedbackContext);
 
-export const FeedbackStats = ({ feedback }: FeedbackStatsProps) => {
   //Calculate rating average
   const ratingAverage = (): string => {
     if (!feedback || feedback.length === 0) {

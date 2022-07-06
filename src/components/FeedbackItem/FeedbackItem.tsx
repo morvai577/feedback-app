@@ -1,27 +1,27 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Card } from "@/components/shared/Card";
 import { FaTimes } from "react-icons/all";
+import FeedbackContext from "@/context/FeedbackContext";
 
 type FeedbackItemProps = {
   inputId: number;
   inputRating: number;
   inputText: string;
-  handleDelete: (id: number) => void;
 };
 
 export const FeedbackItem = ({
   inputId,
   inputRating,
   inputText,
-  handleDelete,
 }: FeedbackItemProps): JSX.Element => {
+  const { deleteFeedback } = useContext(FeedbackContext);
   const [rating, setRating] = useState<number | null>(inputRating);
   const [text, setText] = useState<string | null>(inputText);
 
   return (
     <Card reverse={true}>
       <div className="num-display">{rating}</div>
-      <button onClick={() => handleDelete(inputId)} className="close">
+      <button onClick={() => deleteFeedback(inputId)} className="close">
         <FaTimes color="purple" />
       </button>
       <div className="text-display">{text}</div>
