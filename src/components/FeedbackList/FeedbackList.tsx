@@ -1,16 +1,11 @@
 // @flow
-import { FeedbackDataType } from "@/data/FeedbackData";
 import { FeedbackItem } from "@/components/FeedbackItem/FeedbackItem";
+import { useContext } from "react";
+import FeedbackContext from "@/context/FeedbackContext";
 
-type FeedbackListProps = {
-  feedback: Array<FeedbackDataType>;
-  handleDelete: (id: number) => void;
-};
+export const FeedbackList = (): JSX.Element => {
+  const { feedback } = useContext(FeedbackContext);
 
-export const FeedbackList = ({
-  feedback,
-  handleDelete,
-}: FeedbackListProps): JSX.Element => {
   if (!feedback || feedback.length === 0) {
     return <p>No feedback yet</p>;
   }
@@ -18,13 +13,7 @@ export const FeedbackList = ({
   return (
     <div className="feedback-list">
       {feedback.map((feedbackItem) => (
-        <FeedbackItem
-          key={feedbackItem.id}
-          inputId={feedbackItem.id}
-          inputRating={feedbackItem.rating}
-          inputText={feedbackItem.text}
-          handleDelete={handleDelete}
-        />
+        <FeedbackItem key={feedbackItem.id} item={feedbackItem} />
       ))}
     </div>
   );
