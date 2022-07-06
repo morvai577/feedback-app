@@ -13,12 +13,7 @@ export const FeedbackList = (): JSX.Element => {
   return (
     <div className="feedback-list">
       {feedback.map((feedbackItem) => (
-        <FeedbackItem
-          key={feedbackItem.id}
-          inputId={feedbackItem.id}
-          inputRating={feedbackItem.rating}
-          inputText={feedbackItem.text}
-        />
+        <FeedbackItem key={feedbackItem.id} item={feedbackItem} />
       ))}
     </div>
   );
