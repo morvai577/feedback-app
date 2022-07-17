@@ -55,23 +55,26 @@ export const FeedbackForm = () => {
   };
 
   return (
-    <Card>
-      <form onSubmit={handleSubmit}>
-        <h2>How would you rate your service with us?</h2>
-        <RatingSelect select={(rating) => setRating(rating)}></RatingSelect>
-        <div className="input-group">
-          <input
-            onChange={handleTextChange}
-            type="text"
-            placeholder="Write a review"
-            value={text}
-          />
-          <Button type="submit" isDisabled={btnDisabled}>
-            Send
-          </Button>
-        </div>
-        {message && <div className="message">{message}</div>}
-      </form>
-    </Card>
+    <form
+      className="my-8 rounded-3xl bg-white px-12 py-10 text-black"
+      onSubmit={handleSubmit}
+    >
+      <h2 className="text-center text-xl font-semibold">
+        How would you rate your service with us?
+      </h2>
+      <RatingSelect select={(rating) => setRating(rating)}></RatingSelect>
+      <div className="input-group">
+        <input
+          onChange={handleTextChange}
+          type="text"
+          placeholder="Write a review"
+          value={text}
+        />
+        <Button type="submit" isDisabled={btnDisabled}>
+          Send
+        </Button>
+      </div>
+      {message && <div className="message">{message}</div>}
+    </form>
   );
 };

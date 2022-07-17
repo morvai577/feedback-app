@@ -13,7 +13,7 @@ export default function App() {
     <FeedbackProvider>
       <BrowserRouter>
         <Header text="Hello World" />
-        <div className="container">
+        <div className="m-auto max-w-screen-md py-0 px-5">
           <Routes>
             <Route
               path="/"
